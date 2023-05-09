@@ -27,13 +27,21 @@ function isTriangle(a, b, c){
 // Funzione che ritorna true o false se, in base alla lunghezza 
 // di vari segmenti presenti in un array, essi formano una figura chiusa:
 
-function isFigure(array){
-    for (let i = 0; i < array.length; i++) {
-        const segmentsLength = array[i];
-        
-    }
+function isClousureFigure(array){
+    if(array.length > 2){
+        const totalSum = array.reduce((n1, n2) => n1 + n2);
+        for (let i = 0; i < array.length; i++) {
+            const segmentLength = array[i];
+            if(segmentLength > (totalSum - segmentLength)){
+                return false;
+            };
+        };
+        return true;
+    } else {
+        return false;
+    };
 }; 
 
-// let arrayOfSegmentLength = [10, 5, 10, 5];
+let arrayOfSegmentLength = [10, 5, 10, 5];
 
-// console.log(isFigure(arrayOfSegmentLength));
+console.log(isClousureFigure(arrayOfSegmentLength));
